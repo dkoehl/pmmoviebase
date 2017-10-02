@@ -18,8 +18,8 @@ class MovieScraper extends \TYPO3\CMS\Scheduler\Task\AbstractTask
      */
     const MOVIELISTFILE = 'movielist.txt';
     const MOVIELISTFILE_TEST = 'movie_test.txt';
-    const MOVIEAPIKEY = '".self::MOVIEAPIKEY."';
-    const ROTTENTOMATO_APIKEY = '95vkpjg4ar7vpcpkah8x6u85';
+    const MOVIEAPIKEY = 'YOUR-KEY-HERE';
+    const ROTTENTOMATO_APIKEY = 'YOUR-KEY-HERE';
     /**
      * movieRepository
      *
