@@ -1,5 +1,5 @@
 # Moviedatabase
-* This is an TYPO3 CMS Extension for showing your movie library in a nice way.
+This is an TYPO3 CMS Extension for showing your movie library in a nice way.
 
 ### Requirements
 * `TYPO3 CMS Versions: 6.2.x - 7.6.x`
@@ -33,15 +33,22 @@
 
 
 ### Frameworks or Third-Party Libraries
-* Isotop 
-* Bootstrap 3
-* jQuery / jQuery UI
+* Isotop (https://isotope.metafizzy.co)
+* Bootstrap 3 (http://getbootstrap.com)
+* jQuery / jQuery UI (https://jquery.com)
+* jQuery Animsition (http://git.blivesta.com/animsition/)
 
 
 ### Used APIs 
-themoviedb.org
-Images from : tmdb.org
-Trailers from: youtube.com
-Trailers from: trailersapi.com
+* Movie Metadata from: themoviedb.org
+* Images and Covers from : tmdb.org
+* Trailers from: youtube.com
+* Trailers from: trailersapi.com
 
+
+### Notice
+Your need to add your own API KEY to the Controller and Scheduler-Task
+
+#### Contact
+Twitter: @pmnewmedia 
 
