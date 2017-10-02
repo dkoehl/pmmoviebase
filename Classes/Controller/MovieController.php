@@ -41,7 +41,7 @@ class MovieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 */
 	protected $movieRepository = NULL;
 
-    const MOVIEAPIKEY ='c19092014ce21b63ebc5c3a2d66b0320';
+    const MOVIEAPIKEY ='YOUR-KEY-HERE';
 
 	/**
 	 * action list
