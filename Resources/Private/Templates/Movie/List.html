@@ -1,0 +1,130 @@
+
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+Resources:
+Private:
+Templates:
+List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+    <f:flashMessages renderMode="div" />
+
+<f:if condition="{movies}">
+    <f:then>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+
+                <f:for each="{slidermovies}" as="item" iteration="index">
+                    <f:if condition="{item.backdroppath}">
+                        <div class="item {f:if(condition:'{index.isFirst}',then:'active')}">
+                            <f:link.action action="show" arguments="{movie : item}" >
+                                <f:image src="{item.backdroppath}" width="1200c"  style="postion:relative; width:100%;" class="img-responsive"/>
+                                <div class="carousel-caption">
+                                    <h1>{item.title}</h1>
+                                    <p><f:format.crop maxCharacters="250">{item.overview}</f:format.crop></p>
+                                </div>
+                            </f:link.action>
+                        </div>
+                    </f:if>
+                </f:for>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <f:render partial="Movie/Searchform" arguments="{_all}" />
+                <f:if condition="{categories}">
+                    <div class="jumbotron" id="filters">
+                        <a href="dashboard.html" data-filter="*">
+                            <span class="label label-primary">show all</span>
+                        </a>
+                        <f:for each="{categories}" as="category">
+                            <a href="#" data-filter=".{category.category}">
+                                <span class="label label-primary">{category.category}</span>
+                            </a>
+                        </f:for>
+                    </div>
+                    <br />
+                </f:if>
+            </div>
+
+
+
+            <f:if condition="{selectedCategory}">
+                <f:then>
+                    <div class="row">
+                        <div class="container">
+                            <h2><small>Gewählte Kategorie: </small>{selectedCategory} <span class="badge"><f:count subject="{movies}" /></span></span></h2>
+                        </div>
+                    </div>
+                </f:then>
+                <f:else>
+                        <h2>Movies <span class="badge"><f:count subject="{movies}" /></span></h2>
+                </f:else>
+
+            </f:if>
+            <hr />
+            <div class="row" id="container">
+                <f:for each="{movies}" as="movieItem">
+                    <f:if condition="{movieItem}">
+                        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 element transition {movieItem.category} isoitem ">
+                            <f:if condition="{movieItem.image}">
+                                <f:then>
+                                    <f:link.action action="show" class="thumbnail" arguments="{movie : movieItem}">
+                                        <img
+                                                src="typo3conf/ext/bootstrap_package/Resources/Public/Images/blank.gif"
+                                                class="lazyload"
+                                                data-src="<f:uri.image src='{movieItem.image}' />" style="width:auto !important; height:250px !important;"  alt="{movieItem.title}" />
+                                    </f:link.action>
+                                </f:then>
+                                <f:else>
+                                    <div class="thumbnail">
+                                        <h1>{movieItem.title} <small>( {movieItem.originaltitle} )</small> <span class="badge">{movieItem.year}</span></h1>
+                                    </div>
+                                </f:else>
+                            </f:if>
+
+                        </div>
+                    </f:if>
+                </f:for>
+            </div>
+        </div>
+
+
+
+    </f:then>
+    <f:else>
+
+
+
+
+    </f:else>
+</f:if>
+
+
+
+
+
+
+
+
+
+
+    <!--<f:link.action action="new">New MediaItem</f:link.action>-->
+</f:section>

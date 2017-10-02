@@ -1,0 +1,186 @@
+body{
+        background:fixed;
+    background: linear-gradient(top, #000000 0%, #616161 100%, #333333 100%);
+    background: -moz-linear-gradient(top, #000000 0%, #616161 100%, #333333 100%);
+    background: -webkit-linear-gradient(top, #000000 0%, #616161 100%, #333333 100%);
+    background: -ms-linear-gradient(top, #000000 0%, #616161 100%, #333333 100%);
+    background: -o-linear-gradient(top, #000000 0%, #616161 100%, #333333 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000, endColorstr=#333333,GradientType=1);
+
+    font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+
+}
+.body-bg{
+    /*display:none;*/
+    opacity: 0;
+    background:none;
+}
+h1, h2, h3, h4, p, li, a{
+    font-family:Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+h1, h2, h3, h4{
+    color:#ccc;
+}
+hr {
+    background-color:#666;
+    border-color:#666;
+}
+
+a{
+    color:#999;
+}
+a:hover{
+    color:#fff;
+}
+.jumbotron{
+    padding:20px !important;
+    background-color:#222;
+    float:left;
+    width:100%;
+}
+.jumbotron h2{
+    margin-bottom:20px;
+}
+.label-primary {
+    color:#333;
+    background-color:#666;
+    font-size:14px;
+    padding:7px;
+    margin-right:7px;
+    margin-top: 7px;
+    margin-bottom:10px;
+    float: left;
+}
+.badge{
+    background-color:#666;
+    border:none;
+    color:#ccc;
+}
+.table{
+    color:#999;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td, .htmlarea-content-body table > thead > tr > th, .htmlarea-content-body table > tbody > tr > th, .htmlarea-content-body table > tfoot > tr > th, .htmlarea-content-body table > thead > tr > td, .htmlarea-content-body table > tbody > tr > td, .htmlarea-content-body table > tfoot > tr > td {
+    border:none;
+}
+.thumbnail{
+    background-color:#3f3f3f;
+    border:none;
+    color:#999;
+}
+
+
+.stageimage{
+    width:100%;
+    height:100%;
+    position:relative;
+    z-index:1;
+}
+2
+.stage{
+    margin-bottom:50px;
+    margin-top:-20px;
+
+}
+.stageimage{
+    width:100%;
+}
+.navbar{
+    display:none;
+}
+.stageabstract{
+    position:relative;
+    z-index: 99;
+    /*float:left;*/
+    background-color:rgba(0, 0, 0, 0.5);
+    padding:20px;
+    margin-top:-200px;
+    color:#ccc;
+    padding-left:10%;
+    padding-right:10%;
+    min-height: 200px;
+}
+.stageabstract h1{
+    color:#ccc;
+}
+.carousel-caption{
+    background-color:rgba(0, 0, 0, 0.5);
+    left:0px;
+    right:0px;
+    bottom:0px;
+    padding-left:10%;
+    padding-right:10%;
+    text-align:left;
+    color:#ccc;
+}
+.breadcrumb{
+    background:none;
+    margin-top:30px;
+    color:#999;
+}
+
+.form-inline .form-control{
+    background-color:#333;
+    border:none;
+}
+.btn-primary,
+.btn-default{
+    background-color:#666;
+    border:none;
+    color:#333;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary{
+    background-color:#999;
+    color:#333;
+}
+.pagination > li > a, .pagination > li > span{
+    color: #999;
+    background-color: #333;
+    border:none;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus,
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus{
+    background-color:#666;
+    color:#999;
+}
+
+
+.pagination{
+    float: left;
+    width: 100%;
+}
+
+
+
+
+
+/*//iPhone 6 and 6+*/
+@media only screen
+and (max-device-width: 640px),
+only screen and (max-device-width: 667px),
+only screen and (max-width: 480px){
+    #myCarousel > div > div > a > img{
+        width:100%;
+        left:0px;
+        right:0px;
+    }
+    .carousel-inner > .item {
+        padding:0px !important;
+    }
+    .carousel-inner > .item{
+        height:auto;
+    }
+    .carousel-caption{
+        position:relative;
+        padding:5px;
+        bottom:auto;
+    }
+}
+
+@media (max-width: 991px){
+    .carousel-inner > .item {
+        padding:0px;
+    }
+    .stageabstract{
+        margin-top:auto !important;
+    }
+}

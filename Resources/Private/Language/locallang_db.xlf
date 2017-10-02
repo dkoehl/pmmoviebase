@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-06-15T11:43:21Z" product-name="pmmoviebase">
+		<header/>
+		<body>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie">
+				<source>Movie</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.originaltitle">
+				<source>Originaltitle</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.releasedate">
+				<source>Releasedate</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.backdroppath">
+				<source>Backdroppath</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.id">
+				<source>Id</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.popularity">
+				<source>Popularity</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.filename">
+				<source>Filename</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.year">
+				<source>Year</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.parental">
+				<source>Parental</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.overview">
+				<source>Overview</source>
+			</trans-unit>
+			<trans-unit id="tx_pmmoviebase_domain_model_movie.votes">
+				<source>Bewertung</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

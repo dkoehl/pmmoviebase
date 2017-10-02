@@ -1,0 +1,14 @@
+{
+  "name": "MovieDatabase",
+  "description": "MovieDatabase shows you movie library",
+  "type": "typo3-cms-extension",
+  "license": "GPL-3.0",
+  "require": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "Pmmoviebase\\Pmmoviebase\\": "Classes/"
+    }
+  }
+}

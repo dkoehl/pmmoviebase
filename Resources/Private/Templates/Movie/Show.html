@@ -1,0 +1,53 @@
+
+<f:layout name="Default" />
+
+This Template is responsible for displaying a single view for a domain object
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Show.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+    <f:flashMessages renderMode="div" />
+            <f:render partial="Movie/Properties" arguments="{_all}" />
+        <br />
+
+    <f:if condition="{credits}">
+        <br />
+        <hr />
+        <br />
+        <div class="row">
+            <div class="container">
+                <h3>Besetzung</h3>
+                <f:for each="{credits}" as="creditItem">
+                    <f:if condition="{creditItem.profile_path}">
+                        <div class="col-xs-2 col-md-2 thumbnail" style="margin-right:10px;">
+                            <img src="http://image.tmdb.org/t/p/w500/{creditItem.profile_path}" class="responsive-img" style="height:80px; width:60px"/>
+                            <center>{creditItem.name}</center>
+                        </div>
+                    </f:if>
+                </f:for>
+            </div>
+        </div>
+    </f:if>
+    <br />
+    <hr />
+
+
+    <div class="row">
+        <div class="container">
+            <div class="col-xs-12 col-md-8">
+                <a href="#" class="btn btn-default"  onClick="window.history.back();return false;">Zur&uuml;ck</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</f:section>

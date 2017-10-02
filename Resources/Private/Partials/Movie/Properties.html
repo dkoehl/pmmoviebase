@@ -1,0 +1,107 @@
+<f:if condition="{movie.backdroppath}">
+    <div class="stage">
+        <div class="stageiamge">
+            <f:image src="{movie.backdroppath}" class="img-responsive stageimage"  width="1200c" height="500c" />
+        </div>
+        <div class="stageabstract">
+            <f:if condition="{movie.title} != {movie.originaltitle}">
+                <f:then>
+                    <h1>{movie.title} <span class="label label-default">{movie.year}</span>
+                        <small>({movie.originaltitle})</small>
+                    </h1>
+                </f:then>
+                <f:else>
+                    <h1>{movie.title} <span class="label label-default">{movie.year}</span>
+                    </h1>
+                </f:else>
+            </f:if>
+            {movie.overview}
+        </div>
+    </div>
+</f:if>
+
+<br />
+
+<div class="container">
+    <ol class="breadcrumb">
+        <li>Kategorie: </li>
+        <li class="active">{movie.category}</li>
+    </ol>
+    <div class="col-xs-12 col-md-4">
+        <f:image src="{movie.image}" class="img-responsive thumbnail" alt="{movie.title}"/>
+    </div>
+    <div class="col-md-8">
+        <div class="table-responsive">
+            <table class="tx-pmmediaz table" cellspacing="0" cellpadding="0" style="border-spacing:0px;">
+                <tr>
+                    <td>
+                        <f:translate key="tx_pmmoviebase_domain_model_movie.originaltitle"/>
+                    </td>
+                    <td>
+                        {movie.originaltitle}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <f:translate key="tx_pmmoviebase_domain_model_movie.releasedate"/>
+                    </td>
+                    <td>
+                        {movie.releasedate}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <f:translate key="tx_pmmoviebase_domain_model_movie.title"/>
+                    </td>
+                    <td>
+                        {movie.title}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <f:translate key="tx_pmmoviebase_domain_model_movie.votes"/>
+                    </td>
+                    <td>
+                        {movie.votes}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <f:translate key="tx_pmmoviebase_domain_model_movie.filename"/>
+                    </td>
+                    <td>
+                        <a href="smb://192.168.1.130/movies/{movie.filename}">/movies/{movie.filename}</a>
+                    </td>
+                </tr>
+                <f:if condition="{trailer.details.title}">
+                    <tr>
+                        <td>
+                            Trailer Title
+                        </td>
+                        <td>
+                            {trailer.details.title}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Description
+                        </td>
+                        <td>
+                            {trailer.details.description}
+                        </td>
+                    </tr>
+                </f:if>
+            </table>
+        </div>
+    </div>
+    <f:if condition="{trailer.movieId}">
+        <div class="col-xs-12 col-md-8">
+            <iframe id="ytplayer" type="text/html" class="embed-responsive-item" width="100%" height="390" src="http://www.youtube.com/embed/{trailer.movieId}?autoplay=0&origin=http://example.com"></iframe>
+        </div>
+    </f:if>
+    <f:if condition="{trailerId}">
+        <div class="col-xs-12 col-md-8">
+            <iframe id="ytplayer" type="text/html" class="embed-responsive-item" width="100%" height="390" src="http://www.youtube.com/embed/{trailerId}?autoplay=0&origin=http://example.com"></iframe>
+        </div>
+    </f:if>
+</div>

@@ -1,0 +1,35 @@
+
+<f:layout name="Default" />
+
+This Template is responsible for displaying a single view for a domain object
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Show.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+<f:flashMessages renderMode="div" />
+
+
+
+    <div class="row">
+        <div class="container">
+            <f:render partial="MediaItem/Properties" arguments="{_all}" />
+        </div>
+<br />
+    </div>
+
+    <div class="row">
+        <div class="container">
+            <div class="col-xs-12 col-md-8">
+                <a href="#" class="btn btn-default"  onClick="window.history.back();return false;">Zur&uuml;ck</a>
+            </div>
+        </div>
+    </div>
+</f:section>

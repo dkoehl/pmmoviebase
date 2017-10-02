@@ -1,0 +1,69 @@
+plugin.tx_pmmoviebase {
+	view {
+		templateRootPath = {$plugin.tx_pmmoviebase.view.templateRootPath}
+		partialRootPath = {$plugin.tx_pmmoviebase.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_pmmoviebase.view.layoutRootPath}
+		widget.TYPO3\CMS\Fluid\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = {$plugin.tx_pmmoviebase.view.templateRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_pmmoviebase.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+    settings {
+        link {
+            skipControllerAndAction = 1
+        }
+    }
+}
+
+plugin.tx_pmmoviebase._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-pmmoviebase table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-pmmoviebase table th {
+		font-weight:bold;
+	}
+
+	.tx-pmmoviebase table td {
+		vertical-align:top;
+	}
+
+	.typo3-messages .message-error {
+		color:red;
+	}
+
+	.typo3-messages .message-ok {
+		color:green;
+	}
+
+)
+page.includeCSS{
+    # loads loading-animation
+	file102 = EXT:pmmoviebase/Resources/Public/Css/animsition.min.css
+    styles = EXT:pmmoviebase/Resources/Public/Css/pmmoviebase.css
+}
+page.includeJSFooterlibs {
+	# Loads Isotope
+    Animation = EXT:pmmoviebase/Resources/Public/Javascript/jquery.animsition.min.js
+    Isotope = EXT:pmmoviebase/Resources/Public/Javascript/isotope.pkgd.min.js
+
+    Custom = EXT:pmmoviebase/Resources/Public/Javascript/pmmoviebase.js
+}
+
+page.config.tx_extbase.view.widget.Tx_Fluid_ViewHelpers_Widget_PaginateViewHelper.templateRootPath = {$plugin.tx_pmmoviebase.view.templateRootPath}
+config.tx_extbase.view.widget.Tx_Fluid_ViewHelpers_Widget_PaginateViewHelper.templateRootPath = {$plugin.tx_pmmoviebase.view.templateRootPath}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-06-15T11:43:21Z" product-name="pmmoviebase">
+		<header/>
+		<body>
+			<trans-unit id="originaltitle.description">
+				<source>originaltitle</source>
+			</trans-unit>
+			<trans-unit id="releasedate.description">
+				<source>releasedate</source>
+			</trans-unit>
+			<trans-unit id="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="image.description">
+				<source>image</source>
+			</trans-unit>
+			<trans-unit id="backdroppath.description">
+				<source>backdroppath</source>
+			</trans-unit>
+			<trans-unit id="id.description">
+				<source>id</source>
+			</trans-unit>
+			<trans-unit id="popularity.description">
+				<source>popularity</source>
+			</trans-unit>
+			<trans-unit id="category.description">
+				<source>category</source>
+			</trans-unit>
+			<trans-unit id="filename.description">
+				<source>filename</source>
+			</trans-unit>
+			<trans-unit id="year.description">
+				<source>year</source>
+			</trans-unit>
+			<trans-unit id="parental.description">
+				<source>parental</source>
+			</trans-unit>
+			<trans-unit id="overview.description">
+				<source>overview</source>
+			</trans-unit>
+			<trans-unit id="votes.description">
+				<source>votes</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
