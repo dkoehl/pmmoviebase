@@ -12,11 +12,13 @@ This is an TYPO3 CMS Extension for showing your movie library in a nice way.
 
 
 ## Single- View (Movie-Details)
+Movie detail page, with metadata of the movie like original title, cast, trailer, popularity and the year of making.
 ![](https://raw.githubusercontent.com/dkoehl/pmmoviebase/master/Documentation.tmpl/Screenshots/Bildschirmfoto%202017-09-30%20um%2015.51.14.png)
 
 
 ## Scheduler Task 
-* This Scheduler Task is for getting Data from Movie APIs
+This Scheduler Task is for getting Data from Movie APIs
+
 
 ![](https://raw.githubusercontent.com/dkoehl/pmmoviebase/master/Documentation.tmpl/Screenshots/Bildschirmfoto%202017-09-30%20um%2014.14.36.png)
 
@@ -24,10 +26,13 @@ This is an TYPO3 CMS Extension for showing your movie library in a nice way.
 
 ### Installation
 1. Download this extension to your extension directory.
-2. Install the static typoscript 
-3. Insert the plugin to your pagecontent.
-4. Add an storagefolder for storing your movie data
+2. Install the Static typoscript 
+3. Insert the Plugin to your Pagecontent.
+4. Add an Storagefolder for storing your movie data
 5. Add Moviedata-Task to your scheduler management
+6. Copy your Movie-Library File in the extension folder: `typo3conf/ext/pmmoviebase`
+7. Add your Filename to the MovieScraper Task Script.
+8. Add your API Keys to the MovieController and MovieScraper Task
 
 
 
