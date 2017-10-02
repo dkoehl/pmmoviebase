@@ -41,6 +41,8 @@ class MovieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 */
 	protected $movieRepository = NULL;
 
+    const MOVIEAPIKEY ='c19092014ce21b63ebc5c3a2d66b0320';
+
 	/**
 	 * action list
 	 *
@@ -83,23 +85,15 @@ class MovieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * ToDo: Build this function
      */
     public function showFilesystemFolder(){
-        $dirs = exec('ls -la /media/movies');
-//        DebuggerUtility::var_dump($dirs, 'dirs');
+        return exec('ls -la /');
     }
 
     public function getMovieDetails($movie){
-        ///movie/{id}/videos
         $movieId = $movie->getId();
-        $requestUrl = "https://api.themoviedb.org/3/movie/".$movieId."/videos?api_key=c19092014ce21b63ebc5c3a2d66b0320&format=JSON&language=de";
+        $requestUrl = "https://api.themoviedb.org/3/movie/".$movieId."/videos?api_key=".self::MOVIEAPIKEY."&format=JSON&language=de";
         $json = $this->makeApiRequest($requestUrl);
         $trailerInfos = json_decode($json, true);
-
         $trailerId = $trailerInfos['results']['0']['key'];
-
-        //11934
-        ///movie/{id}/credits
-        //https://api.themoviedb.org/3/movie/11934/credits?api_key=c19092014ce21b63ebc5c3a2d66b0320&format=JSON&language=de
-
         if(empty($trailerId)){
             $title = $movie->getOriginaltitle();
             $title = str_replace(array(' ',','), array('-',''), $title);
@@ -112,7 +106,6 @@ class MovieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
     }
 
-
     /**
      * @param $movieId
      *
@@ -120,12 +113,10 @@ class MovieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function getMovieCredits($movieId){
         ///credits/
-        $requestUrl = "https://api.themoviedb.org/3/movie/".$movieId."/credits?api_key=c19092014ce21b63ebc5c3a2d66b0320&format=JSON&language=de";
+        $requestUrl = "https://api.themoviedb.org/3/movie/".$movieId."/credits?api_key=".self::MOVIEAPIKEY."&format=JSON&language=de";
         $json = $this->makeApiRequest($requestUrl);
         return json_decode($json, true);
     }
-
-
 
     /**
      * @param $apiUrl
@@ -146,13 +137,14 @@ class MovieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
     }
 
-
+    /**
+     * Search Action
+     */
     public function searchAction() {
         $args = $this->request->getArguments();
         $results = $this->movieRepository->findBySearch('%'.$args['search']['sword'].'%');
         $this->view->assign('results', $results);
     }
-
 
     /**
 	 * action show
@@ -161,9 +153,6 @@ class MovieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function showAction(\Pmmoviebase\Pmmoviebase\Domain\Model\Movie $movie) {
-//        $requestUrl = 'http://trailersapi.com/trailers.json?movie='.$title.'&limit=5&width=320';
-//        $requestUrl = 'http://api.traileraddict.com/?film='.$title.'&count=3';
-
         $movieDetails = $this->getMovieDetails($movie);
         if(empty($movieDetails['trailerId'])){
             $this->view->assign('trailer', $movieDetails);
@@ -173,5 +162,4 @@ class MovieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
         $this->view->assign('movie', $movie);
 	}
-
 }

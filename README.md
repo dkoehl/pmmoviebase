@@ -39,6 +39,9 @@
 
 
 ### Used APIs 
-
+themoviedb.org
+Images from : tmdb.org
+Trailers from: youtube.com
+Trailers from: trailersapi.com
 
 

@@ -15,11 +15,19 @@ class MovieScraper extends \TYPO3\CMS\Scheduler\Task\AbstractTask
 
     /**
      * Files with moviedata
+     *
+     *
+     * Make your settings here
+     *
      */
     const MOVIELISTFILE = 'movielist.txt';
     const MOVIELISTFILE_TEST = 'movie_test.txt';
     const MOVIEAPIKEY = 'YOUR-KEY-HERE';
     const ROTTENTOMATO_APIKEY = 'YOUR-KEY-HERE';
+
+    const MOVIESTORAGE_PID = '41';
+    const IMAGESTORAGE_FOLDER = 'fileadmin/tx_pmmoviebase/';
+
     /**
      * movieRepository
      *
@@ -46,7 +54,7 @@ class MovieScraper extends \TYPO3\CMS\Scheduler\Task\AbstractTask
         $configurationManager = $objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface');
         $this->settings = $configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
 
-        $configurationArray = array('persistence' => array('storagePid' => '41'));
+        $configurationArray = array('persistence' => array('storagePid' => self::MOVIESTORAGE_PID));
         $configurationManager->setConfiguration($configurationArray);
         // Get Repos
         $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
@@ -165,7 +173,7 @@ class MovieScraper extends \TYPO3\CMS\Scheduler\Task\AbstractTask
      */
     public function getMediaFromApi($moviemedia, $movieid){
         if(!empty($moviemedia)){
-            $basePath = 'fileadmin/tx_pmmoviebase/';
+            $basePath = self::IMAGESTORAGE_FOLDER;
             if(!is_dir(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($basePath))){
                 \TYPO3\CMS\Core\Utility\GeneralUtility::mkdir(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($basePath));
             }
