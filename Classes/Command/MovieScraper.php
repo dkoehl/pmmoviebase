@@ -4,15 +4,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  *
- * Importiert Daten aus externer Datenbank (CRM) in TYPO3 Datenbank.
- *
- *
- * TODO: Anbindung an externe Datenbank -> Umsetzung erst nach Freigabe der aktuellen Version.
- * -> Benötigte Tabellen: luxhaus_referenz, luxhaus_users2plz, luxhaus_vtiger_users, termine
- * -> Tabellen liegen in Datenbank "CRM"
- *
- *
- * A dummy Command Controller with a noop command which simply echoes the argument
+ * Gets Data from external Movie APIs
  */
 class MovieScraper extends \TYPO3\CMS\Scheduler\Task\AbstractTask
 {
@@ -24,9 +16,10 @@ class MovieScraper extends \TYPO3\CMS\Scheduler\Task\AbstractTask
     /**
      * Files with moviedata
      */
-    const MOVIELISTFILE = 'movielist_20170930.txt';
+    const MOVIELISTFILE = 'movielist.txt';
     const MOVIELISTFILE_TEST = 'movie_test.txt';
-
+    const MOVIEAPIKEY = '".self::MOVIEAPIKEY."';
+    const ROTTENTOMATO_APIKEY = '95vkpjg4ar7vpcpkah8x6u85';
     /**
      * movieRepository
      *
@@ -36,8 +29,7 @@ class MovieScraper extends \TYPO3\CMS\Scheduler\Task\AbstractTask
     protected $movieRepository = NULL;
 
     /**
-     *
-     * @param \Pmmoviebase\Pmmoviebase\Domain\Repository\MovieRepository $eventRepository
+     * @param \Pmmoviebase\Pmmoviebase\Domain\Repository\MovieRepository $movieRepository
      */
     public function injectEventRepository (\Pmmoviebase\Pmmoviebase\Domain\Repository\MovieRepository $movieRepository) {
         $this->movieRepository = $movieRepository;
@@ -119,34 +111,28 @@ class MovieScraper extends \TYPO3\CMS\Scheduler\Task\AbstractTask
      * @return string
      */
     public function buildApiLink($tmpMovieArray){
-        $apikey = 'c19092014ce21b63ebc5c3a2d66b0320';
-        $rottentomato_apikey = '95vkpjg4ar7vpcpkah8x6u85';
+        $apikey = self::MOVIEAPIKEY;
+        $rottentomato_apikey = self::ROTTENTOMATO_APIKEY;
 
-//        $requestUrl = "http://www.omdbapi.com/?s=".$title."&y=".$year."&r=JSON";
-//        $requestUrl = "http://www.themoviedb.org/search?query=".$title. "&year=".$year."&language=de";
-//        $requestUrl = "http://www.omdbapi.com/?t=".$title."&y=".$year;
-//        $requestUrl = "https://api.themoviedb.org/3/search/movie?query='".$title."'&api_key=".$apikey."";
-//        $requestUrl = "http://www.myapifilms.com/tmdb.jsptmdb/searchMovie?movieName=stirb langsam&format=JSON&language=de&includeAdult=1";
-//        $requestUrl = "http://www.myapifilms.com/imdb/searchMovie?movieName=stirb langsam&format=JSON&language=de&includeAdult=1";
-//        http://www.myapifilms.com/tmdb.jsptmdb/movieInfoImdb?idIMDB=stirb langsam&format=JSON&language=de&alternativeTitles=0&casts=0&images=0&keywords=0&releases=0&trailers=0&translations=0&similarMovies=0&reviews=0&lists=0
 
         if($fileArray['category'] == 'Serien'){
-            if(is_numeric($year) && !empty($title)){
-                $requestUrl = "https://api.themoviedb.org/3/search/tv?api_key=c19092014ce21b63ebc5c3a2d66b0320&query=".urlencode($tmpMovieArray['title'])."&searchYear=".$tmpMovieArray['year']."&format=JSON&language=de&alternativeTitles=0&append_to_response=releases,trailers";
+            if(is_numeric($tmpMovieArray['year']) && !empty($tmpMovieArray['title'])){
+                $requestUrl = "https://api.themoviedb.org/3/search/tv?api_key=".self::MOVIEAPIKEY."&query=".urlencode($tmpMovieArray['title'])."&searchYear=".$tmpMovieArray['year']."&format=JSON&language=de&alternativeTitles=0&append_to_response=releases,trailers";
             }else{
-                $requestUrl = "https://api.themoviedb.org/3/search/tv?api_key=c19092014ce21b63ebc5c3a2d66b0320&query=".urlencode($tmpMovieArray['title'])."&format=JSON&language=de&alternativeTitles=0&append_to_response=releases,trailers";
+                $requestUrl = "https://api.themoviedb.org/3/search/tv?api_key=".self::MOVIEAPIKEY."&query=".urlencode($tmpMovieArray['title'])."&format=JSON&language=de&alternativeTitles=0&append_to_response=releases,trailers";
             }
         }else{
-            if(is_numeric($year) && !empty($title)){
-                $requestUrl = "https://api.themoviedb.org/3/search/movie?api_key=c19092014ce21b63ebc5c3a2d66b0320&query=".urlencode($tmpMovieArray['title'])."&searchYear=".$tmpMovieArray['year']."&format=JSON&language=de&alternativeTitles=0&append_to_response=releases,trailers";
+            if(is_numeric($tmpMovieArray['year']) && !empty($tmpMovieArray['title'])){
+                $requestUrl = "https://api.themoviedb.org/3/search/movie?api_key=".self::MOVIEAPIKEY."&query=".urlencode($tmpMovieArray['title'])."&searchYear=".$tmpMovieArray['year']."&format=JSON&language=de&alternativeTitles=0&append_to_response=releases,trailers";
             }else{
-                $requestUrl = "https://api.themoviedb.org/3/search/movie?api_key=c19092014ce21b63ebc5c3a2d66b0320&query=".urlencode($tmpMovieArray['title'])."&format=JSON&language=de&alternativeTitles=0&append_to_response=releases,trailers";
+                $requestUrl = "https://api.themoviedb.org/3/search/movie?api_key=".self::MOVIEAPIKEY."&query=".urlencode($tmpMovieArray['title'])."&format=JSON&language=de&alternativeTitles=0&append_to_response=releases,trailers";
             }
         }
         return trim($requestUrl);
     }
+
     /**
-     * @return string
+     * @return array
      */
     public function loadMovieDataFile(){
         $local_file = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('pmmoviebase') . self::MOVIELISTFILE;
@@ -171,10 +157,11 @@ class MovieScraper extends \TYPO3\CMS\Scheduler\Task\AbstractTask
             return $result;
         }
     }
+
     /**
-     * @param $fileName
-     *
-     * @return bool
+     * @param $moviemedia
+     * @param $movieid
+     * @return string
      */
     public function getMediaFromApi($moviemedia, $movieid){
         if(!empty($moviemedia)){

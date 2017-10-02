@@ -22,7 +22,23 @@
 
 
 
+### Installation
+1. Download this extension to your extension directory.
+2. Install the static typoscript 
+3. Insert the plugin to your pagecontent.
+4. Add an storagefolder for storing your movie data
+5. Add Moviedata-Task to your scheduler management
 
+
+
+
+### Frameworks or Third-Party Libraries
+* Isotop 
+* Bootstrap 3
+* jQuery / jQuery UI
+
+
+### Used APIs 
 
 
 
